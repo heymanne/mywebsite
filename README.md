@@ -26,9 +26,9 @@ This is a multi user blog where users can sign in and post blog posts as well as
  <li>Fork this repo into your computer</li>
  <li>Open Terminal or other command line tool and go to location of the folder then run the development server. Example 
  
- <code>cd /Users/Juan/Documents</code>
+ <code>cd /Users/[usermame]/Documents</code>
  
- <code>dev_appserver.py iBlogger</code>
+ <code>dev_appserver.py blog</code>
  </li>
  <li>Then run this URL <code>http://localhost:8080</code> in your browser and you should see the blog.</li>
  </ol>
