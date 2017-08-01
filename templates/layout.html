@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load promotion_tags %}
+
+{% block layout %}
+    <div id="navbar">
+            <!-- navigation panel -->
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#navbar-collapse-main">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/">
+                            <img alt="Brand" src="/images/2D-EH-FaviconBigLogo.png">
+                        </a>
+                    </div>
+
+                    <!-- Navigation bar for tablet and desktop-->
+                    <div class="collapse navbar-collapse" id="navbar-collapse-main">
+
+                        <!-- Left side of the navigation bar for tablet and desktop-->
+                        <ul class="nav navbar-nav">
+                            <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                            <li class="disabled"><a href="#portfolio"><span class="glyphicon glyphicon-book"></span>
+                                Portfolio</a></li>
+                            <li><a href="/resume"><span class="glyphicon glyphicon-file"></span>
+                                Resume</a></li>
+                            <li><a href="/blog"><span class="glyphicon glyphicon-list-alt"></span>
+                                Blog</a></li>
+                            {% if username %}<li><a href="/newpost"><span class="glyphicon glyphicon-pencil"></span>
+                                Create Post</a></li>{% endif %}
+                            <li class="disabled"><a href="#google_map"><span class="glyphicon glyphicon-info-sign">
+                                </span> Contact</a></li>
+                        </ul>
+
+                        <!-- Right side of the navigation bar for tablet and desktop-->
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if not username %}<li><a href="/signup"><span class="glyphicon glyphicon-user"></span>
+                                Sign Up</a></li>
+                            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>
+                                Login</a></li>{% endif %}
+                            {% if username %}<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>
+                                Logout</a></li>{% endif %}
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+{% endblock %}

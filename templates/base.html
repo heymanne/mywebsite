@@ -1,115 +1,80 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <link rel="icon" type="image/png" href="/images/2D-EH-FaviconBigLogo.png">
-    <meta charset="UTF-8">
-    <!--<base href="http://www.edwinheymann.com">-->
-    <meta name="AUTHOR" content="Edwin Heymann">
-    <meta name="DESCRIPTION" content="My First Python Web Application">
-    <meta name="KEYWORDS" content="My First Python Web Application">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Edwin Heymann</title>
-    <!-- Bootstrap -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
-    <!-- Optional Bootstrap theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-          crossorigin="anonymous">
-    <!-- Latest compiled and minified Font Awesome CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-          rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-          crossorigin="anonymous">
-    <!-- Local CSS file -->
-    <link type="text/css" rel="stylesheet" href="/css/styles.css"/>
-    <!-- Google Font "Great Vibes" and "Open Sans" -->
-    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Open+Sans" rel="stylesheet">
-</head>
+    <head>
+        <link rel="icon" type="image/png" href="/images/2D-EH-FaviconBigLogo.png">
+        <meta charset="UTF-8">
+        <!--<base href="http://www.edwinheymann.com">-->
+        <meta name="AUTHOR" content="Edwin Heymann">
+        <meta name="DESCRIPTION" content="My First Python Web Application">
+        <meta name="KEYWORDS"
+              content="Edwin Heymann, Edwin, Heymann, digital resume, interactive resume, portfolio, digital portfolio,
+              job search, social media, project, HTML coding, CSS coding, Python coding, HTML, CSS, Photoshop, InDesign,
+               Dreamweaver">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Edwin Heymann {% block title %}{% endblock %}</title>
+        <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <!-- Optional Bootstrap theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+              crossorigin="anonymous">
+        <!-- Latest compiled and minified Font Awesome CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+              rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+              crossorigin="anonymous">
+        <!-- Local CSS file -->
+        <link type="text/css" rel="stylesheet" href="/css/styles.css"/>
+        <!-- Google Font "Great Vibes" and "Open Sans" -->
+        <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Open+Sans" rel="stylesheet">
+    </head>
 
-<body>
-<div id="navbar">
-    <!-- navigation panel -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#navbar-collapse-main">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand">
-                    <img alt="Brand" src="/images/2D-EH-FaviconBigLogo.png">
-                </a>
-            </div>
+    <body>
+        {% block layout %}{% endblock %}
 
-            <div class="collapse navbar-collapse" id="navbar-collapse-main">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                    <li class="disabled"><a href="#portfolio">Portfolio</a></li>
-                    <li class="disabled"><a href="#resume">Resume</a></li>
-                    <li><a href="/blog">Blog</a></li>
-                    <li><a href="/blog/newpost">Post</a></li>
-                    <li class="disabled"><a href="#google_map">Contact</a></li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="disabled"><a href="#signup"><span class="glyphicon glyphicon-user"></span>
-                        Sign Up</a></li>
-                    <li class="disabled"><a href="#login"><span class="glyphicon glyphicon-log-in"></span>
-                        Login</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-</div>
-
-<div id="content">
-    {% block content %}
-    {% endblock %}
-</div>
-
-<!-- Latest compiled and minified JQuery -->
-<script src="http://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-<!-- Latest compiled and minified Bootstrap JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<!-- Local JS file -->
-<script src="/js/script"></script>
-</body>
-
-<footer>
-    <div class="container-fluid">
-        <hr>
-        <div class="text-center center-block">
-
-            <a href="https://www.linkedin.com/in/heymanne/">
-                <i id="social-lk" class="fa fa-linkedin-square fa-3x social"></i>
-            </a>
-            <a href="https://twitter.com/heymanne">
-                <i id="social-tw" class="fa fa-twitter-square fa-3x social"></i>
-            </a>
-            <a href="https://github.com/heymanne">
-                <i id="social-gh" class="fa fa-github-square fa-3x social"></i>
-            </a>
-            <a href="mailto:7378027097@edwinheymann.com">
-                <i id="social-em" class="fa fa-envelope-square fa-3x social"></i>
-            </a>
-
-            <p class="txt-railway">&copy; Copyright 2014 -
-                <script>document.write(new Date().getFullYear())</script>
-                edwinheymann.com All Rights Reserved
-            </p>
-            <p><a href="#">Back to the Top</a></p>
+        <div id="content">
+            {% block content %}{% endblock %}
         </div>
-    </div>
-</footer>
+
+        <!-- Latest compiled and minified JQuery -->
+        <script src="http://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                crossorigin="anonymous"></script>
+        <!-- Local JS file -->
+        <script src="/js/script"></script>
+    </body>
+
+    <footer>
+        <div class="container-fluid">
+            <hr>
+            <div class="text-center center-block">
+
+                <a href="https://www.linkedin.com/in/heymanne/">
+                    <i id="social-lk" class="fa fa-linkedin-square fa-3x social"></i>
+                </a>
+                <a href="https://twitter.com/heymanne">
+                    <i id="social-tw" class="fa fa-twitter-square fa-3x social"></i>
+                </a>
+                <a href="https://github.com/heymanne">
+                    <i id="social-gh" class="fa fa-github-square fa-3x social"></i>
+                </a>
+                <a href="mailto:7378027097@edwinheymann.com">
+                    <i id="social-em" class="fa fa-envelope-square fa-3x social"></i>
+                </a>
+
+                <p class="txt-railway">&copy; Copyright 2014 -
+                    <script>document.write(new Date().getFullYear())</script>
+                    edwinheymann.com All Rights Reserved
+                </p>
+                <p><a href="#">Back to the Top</a></p>
+            </div>
+        </div>
+    </footer>
 </html>
