@@ -10,14 +10,12 @@ This is a multi user blog where users can sign in and post blog posts as well as
 * Create Post
 * Edit Post
 * Delete Post
-* Post Comments
-* Edit Comments
-* Delete Comments
+* Create Comment
+* Edit Comment
+* Delete Comment
 * Like Post
 * Unlike Post
-* Users Page
-* Latest Posts on Home Page
-* Permalink Page
+* Latest Posts on Blog Page
  
 ## Run locally
  <ol>
