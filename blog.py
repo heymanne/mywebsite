@@ -1,13 +1,23 @@
-import os, re, random, hashlib, hmac, webapp2, jinja2, datetime
+import os
+import re
+import random
+import hashlib
+import hmac
+import webapp2
+import jinja2
+import datetime
 from string import letters
 from config import *
 from google.appengine.ext import db
 
+# Tells your app where to find the templates folder
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+# Creates the template environment
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
                                autoescape=True)
 
 
+# Load a template from jinja_env
 def render_str(template, **params):
     t = jinja_env.get_template(template)
     return t.render(params)
@@ -70,12 +80,21 @@ class BlogHandler(webapp2.RequestHandler):
 
 # Section for main page
 class MainPage(BlogHandler):
-    def get(self):
-        self.render("index.html")
+    def get(self, username=""):
+        # Try & Catch to prevent errors when user is not logged in
+        try:
+            # Get current logged in user
+            if self.user:
+                username = self.user.name
+                self.render("index.html", username=username)
+            else:
+                self.render("index.html")
+        except Exception:
+            self.render("error.html")
 
 
 class BlogFront(BlogHandler):
-    def get(self, title="", content="", username="", error=""):
+    def get(self, username=""):
         # Try & Catch to prevent errors when there are no posts
         try:
             # Get latest posts to the home page
@@ -90,8 +109,7 @@ class BlogFront(BlogHandler):
                 for post in posts:
                     date = str(post.created)
                     date = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S.%f')
-                    date = date.strftime("%d %b %Y")
-                    post_id = post.key().id()
+                    date = date.strftime("%B %d, %Y")
                 self.render("front.html", username=username, posts=posts, date=date)
             else:
                 self.render("front.html", date=date, username=username)
@@ -151,7 +169,6 @@ class User(db.Model):
 # Class for post entities
 class Post(db.Model):
     title = db.StringProperty(required=True)
-    image = db.StringProperty(required=False)
     content = db.TextProperty(required=True)
     created = db.DateTimeProperty(auto_now_add=True)
     last_modified = db.DateTimeProperty(auto_now=True)
@@ -182,7 +199,7 @@ class Like(db.Model):
     created = db.DateTimeProperty(auto_now_add=True)
 
 
-# Section to render post on permalink page
+# Section to render post on blog entry page
 class PostPage(BlogHandler):
     def get(self, post_id):
         key = db.Key.from_path('Post', int(post_id), parent=blog_key())
@@ -192,14 +209,15 @@ class PostPage(BlogHandler):
             likeId = None
             try:
                 # Retrieve comments for a specific post
-                comments = db.GqlQuery("SELECT * FROM Comment WHERE post_id ="
-                                       + post_id + "ORDER BY created DESC LIMIT 20")
+                comments = db.GqlQuery(
+                    "SELECT * FROM Comment WHERE post_id =" + post_id + "ORDER BY created DESC LIMIT 20")
+
                 # Retrieve likes for a specific post
                 likes = db.GqlQuery("SELECT * FROM Like WHERE post_id=" + post_id)
                 # Get created date and reformat the datetime format
                 date = str(post.created)
                 date = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S.%f')
-                date = date.strftime("%d %b %Y")
+                date = date.strftime("%B %d, %Y")
             except Exception:
                 pass
 
@@ -209,15 +227,8 @@ class PostPage(BlogHandler):
                         liked = True
                         likeId = like.key().id()
                         break
-                self.render("post.html",
-                            post=post,
-                            likes=likes,
-                            comments=comments,
-                            username=self.user.name,
-                            date=date,
-                            liked=liked,
-                            likeId=likeId
-                            )
+                self.render("post.html", post=post, likes=likes, comments=comments, username=self.user.name, date=date,
+                            liked=liked, likeId=likeId)
             else:
                 self.render("post.html", post=post, comments=comments, date=date)
         else:
@@ -232,12 +243,10 @@ class EditPost(BlogHandler):
         if post:
             # Edit Post
             editTitle = self.request.get('editTitle')
-            editImage = self.request.get('editImage')
             editContent = self.request.get('editContent')
-            # Edit Post. Image parameter is optional
+            # Edit Post
             if editTitle and editContent and self.user:
                 if post.username == self.user.name:
-                    post.image = editImage
                     post.title = editTitle
                     post.content = editContent
                     post.put()
@@ -293,7 +302,7 @@ class AddComment(BlogHandler):
                 if post.comments is None:
                     post.comments = 1
                 else:
-                    post.comments = int(post.comments) + 1;
+                    post.comments = int(post.comments) + 1
                 # Update comments count
                 post.put()
                 return self.redirect('/post/' + post_id)
@@ -371,7 +380,6 @@ class LikePost(BlogHandler):
                 for like in likes:
                     if self.user.name == like.username:
                         liked = True
-                        likeId = like.key().id()
                         break
 
             if likePost and self.user:
@@ -408,7 +416,6 @@ class UnlikePost(BlogHandler):
                 for like in likes:
                     if self.user.name == like.username:
                         liked = True
-                        likeId = like.key().id()
                         break
 
             if unlikePost and self.user and liked is True:
@@ -571,8 +578,18 @@ class Logout(BlogHandler):
 
 # Show registered users in users page
 class Resume(BlogHandler):
-    def get(self):
-        self.render("resume.html")
+    def get(self, username=""):
+        # Try & Catch to prevent errors when there are no posts
+        try:
+
+            # Get current logged in user
+            if self.user:
+                username = self.user.name
+                self.render("resume.html", username=username)
+            else:
+                self.render("resume.html", username=username)
+        except Exception:
+            self.render("resume.html", username=username)
 
 
 app = webapp2.WSGIApplication([

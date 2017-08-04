@@ -1,12 +1,13 @@
 {% extends "base.html" %}
-{% block title %}| My Blog{% endblock %}
+{% block title %}| Blog{% endblock %}
 {% block content %}
 <div class="container">
     <div class="blog-entry-list">
         {% for post in posts %}
         <div class="blog-entry">
+            <h5 class="blog-creation-date">{{date}}</h5>
             <h4 class="blog-entry-title"><a href="post/{{post.key().id()}}">{{post.title}}</a></h4>
-            <p class="blog-entry-text">{{post.content[:300]}}</p>
+            <p class="blog-entry-text">{{ post.content[:500] }}</p>
             <ul class="stats">
                 {% if post.likes != None and post.likes != 0 %}
                 <li class="like"><i class="fa fa-heart-o"></i> {{post.likes}}</li>
@@ -14,11 +15,10 @@
                 {% if post.comments > 0 %}
                 <li><i class="fa fa-comment-o"></i> {{post.comments}}</li>
                 {% endif %}
-                <li class="right date"><a href="post/{{post.key().id()}}"><i class="fa fa-calendar"></i> {{date}}</a>
-                </li>
             </ul>
             <br>
         </div>
+        <hr>
         {% endfor %}
     </div>
 </div>

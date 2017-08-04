@@ -1,10 +1,10 @@
 body {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Georgia, "Palatino Linotype", Garamond;
     font-size: 14px;
     margin: 0 auto;
     color: #333;
     background-color: #FFFFFF;
-    padding: 50px 0px 0px 0px;
+    padding: 50px 0 0 0;
 }
 
 h1 {
@@ -36,53 +36,22 @@ input[type=text] {
     width: 100%;
     font-size: 20px;
     padding: 2px;
-    font-family: monospace;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 textarea {
     width: 100%;
     height: 300px;
     font-size: 17px;
-    font-family: monospace;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 input[type=submit] {
     font-size: 20px;
 }
 
-.main-title {
-    display: block;
-    color: #222;
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 30px;
-    text-decoration: none;
-}
-
 .post + .post {
     margin-top: 15px;
-}
-
-.post-heading {
-    position: relative;
-    border-bottom: 3px solid #666666;
-}
-
-.post-title {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.post-date {
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    color: #000000;
-}
-
-.post-content {
-    margin-top: 5px;
 }
 
 .navbar-brand {
@@ -123,14 +92,6 @@ input[type=submit] {
     font-weight: 400;
     text-shadow: -0.4px 0 #000000, 0 0.4px #000000, 0.4px 0 #000000, 0 -0.4px #000000;
     color: #FFFFFF;
-}
-
-#break1 {
-    background-color: #000000;
-    height: auto;
-    margin: 0 auto;
-    width: 100%;
-    position: relative;
 }
 
 #kids2 {
@@ -175,28 +136,6 @@ input[type=submit] {
     -o-transition-duration: 0.5s;
 }
 
-.card {
-    width: 33.333%;
-    padding: .75rem;
-    margin-bottom: 2rem;
-    border: 0;
-}
-
-.card {
-    margin-right: 2.5%;
-    margin-bottom: 5%;
-    padding: 0px;
-    box-shadow: 0 2px 0 #D9E1E7;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.card.full {
-    margin: 0 auto;
-    margin-bottom: 3%;
-    width: 60%;
-}
-
 #deletePost {
     float: left;
 }
@@ -205,14 +144,8 @@ input[type=submit] {
     margin-bottom: 2%;
 }
 
-.card.full.right {
-    float: left;
-    width: 27.5%;
-    margin-right: 0%;
-}
-
 .card > img {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .card p {
@@ -220,8 +153,8 @@ input[type=submit] {
 }
 
 .stats {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 .stats.comments {
@@ -236,10 +169,6 @@ input[type=submit] {
 
 .stats li i {
     padding-right: 5px;
-}
-
-.stats li.right {
-    float: right;
 }
 
 .stats .date {
@@ -264,10 +193,6 @@ input[type=submit] {
     color: #555;
 }
 
-.login.form-inline {
-    line-height: 58px;
-}
-
 .card-title a:hover {
     color: #222;
 }
@@ -288,10 +213,38 @@ input[type=submit] {
     color: #f39c12;
 }
 
-iframe:focus {
-    outline: none;
+.intrinsic-container {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 120%; /*8 1/2 x 11 aspect ratio*/
+    height: 0;
 }
 
-iframe[seamless] {
-    display: block;
+.intrinsic-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        font-size: 11px;
+        padding: 4px 6px;
+    }
+}
+
+@media (min-width: 768px) {
+    .btn {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+@media (min-width: 992px) {
+    .btn {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
 }
